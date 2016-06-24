@@ -60,13 +60,13 @@ namespace Nop.Plugin.Widgets.HomePageNewProducts
         {
             return new List<string>
             {
-                "home_page_top",
-                "home_page_before_categories",
-                "home_page_before_products",
-                "home_page_before_best_sellers",
-                "home_page_before_news",
-                "home_page_before_poll",
-                "home_page_bottom"
+                "home_page_top"
+                //"home_page_before_categories",
+                //"home_page_before_products",
+                //"home_page_before_best_sellers",
+                //"home_page_before_news",
+                //"home_page_before_poll",
+                //"home_page_bottom"
             };
         }
 

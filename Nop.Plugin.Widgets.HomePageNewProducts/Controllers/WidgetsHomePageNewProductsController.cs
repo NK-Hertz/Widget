@@ -167,7 +167,7 @@ namespace Nop.Plugin.Widgets.HomePageNewProducts.Controllers
 
             if (products.Count > _homePageNewProductsSettings.NumberOfProducts)
             {
-                for (int i = _homePageNewProductsSettings.NumberOfProducts - 1; i < products.Count; i++)
+                for (int i = products.Count - 1; i >= _homePageNewProductsSettings.NumberOfProducts; i--)
                 {
                     products.RemoveAt(i);
                 }
