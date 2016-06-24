@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Widgets.HomePageNewProducts.Models.ConfigurationModel
+@using Nop.Web.Framework;
+@Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.OverrideStoreCheckboxFor(model => model.WidgetZoneId_OverrideForStore, model => model.WidgetZoneId, Model.ActiveStoreScopeConfiguration)
+                @Html.NopLabelFor(model => model.WidgetZoneValues):
+            </td>
+            <td class="adminData">
+                @Html.DropDownList("WidgetZoneId", Model.WidgetZoneValues)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.OverrideStoreCheckboxFor(model => model.NumberOfProducts_OverrideForStore, model => model.NumberOfProducts, Model.ActiveStoreScopeConfiguration)
+                @Html.NopLabelFor(model => model.NumberOfProducts):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NumberOfProducts)
+                @Html.ValidationMessageFor(model => model.NumberOfProducts)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            </td>
+        </tr>
+    </table>
+}
