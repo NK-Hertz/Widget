@@ -10,10 +10,13 @@ namespace Nop.Plugin.Widgets.HomePageNewProducts
     public class HomePageNewProductsPlugin : BasePlugin, IWidgetPlugin
     {
         private readonly ISettingService _settingService;
+        private readonly HomePageNewProductsSettings _homePageNewProductsSettings;
 
-        public HomePageNewProductsPlugin(ISettingService settingService)
+        public HomePageNewProductsPlugin(ISettingService settingService, 
+            HomePageNewProductsSettings homePageNewProductsSettings)
         {
             this._settingService = settingService;
+            this._homePageNewProductsSettings = homePageNewProductsSettings;
         }
 
         /// <summary>
@@ -60,13 +63,7 @@ namespace Nop.Plugin.Widgets.HomePageNewProducts
         {
             return new List<string>
             {
-                "home_page_top"
-                //"home_page_before_categories",
-                //"home_page_before_products",
-                //"home_page_before_best_sellers",
-                //"home_page_before_news",
-                //"home_page_before_poll",
-                //"home_page_bottom"
+                _homePageNewProductsSettings.WidgetZone.ToString()
             };
         }
 
@@ -77,7 +74,7 @@ namespace Nop.Plugin.Widgets.HomePageNewProducts
         {
             var settings = new HomePageNewProductsSettings
             {
-                WidgetZone = WidgetZone.HomePageTop,
+                WidgetZone = WidgetZone.home_page_top,
                 NumberOfProducts = 0
             };
             _settingService.SaveSetting(settings);
