@@ -1,0 +1,94 @@
+Brief overview of the system:
+
+nopCommerce is the most popular .NET open source e-commerce platform - http://www.nopcommerce.com/
+
+It is based on the latest .NET technologies - ASP.NET MVC5, .NET Framework 4.5.1, Entity Framework 6 Code First as well as many other open source libraries like Autofac, Automapper, FluentValidation etc.
+
+nopCommerce is a very extensible framework that supports a plugin architecture. You can easily create a plugin for nopCommerce if you want to add additional functionality.
+
+We at Nop-Templates.com have established ourselves as the leading vendor of nopCommerce themes and plugins.
+
+Your task:
+
+Imagine that we have received a request from a few nopCommerce store owners to develop a new plugin for nopCommerce to fill a much needed but missing functionality in the framework.
+The plugin should run on nopCommerce 3.70 and will allow store owners to show a certain number of the recently added products in the store on the Home Page.
+This plugin will be quite useful for store owners that often add new products to their catalog and want these to be noticed by their customers.
+
+Your goal is to create such a plugin. Let's call it HomePageNewProductsPlugin.
+
+Please see the required software that you would need in order to develop the HomePageNewProductsPlugin plugin:
+
+http://docs.nopcommerce.com/pages/viewpage.action?pageId=983081
+
+It is preferable to use Visual Studio 2015 as it has a free edition.
+
+Once you have all the required tools, you need to follow these preliminary steps before starting the development of the plugin:
+
+1. Download the nopCommerce source code from here:
+
+http://www.nopcommerce.com/downloads.aspx
+
+2. Build and setup a running nopCommerce installation on your machine.
+
+It is best to run nopCommerce from within Visual Studio with IIS Express so that you can debug it.
+To do so, once you have the nopCommerce source code open in Visual Studio, set Nop.Web as the startup project and run it.
+Then follow the installation wizard to install nopCommerce. Please note that the following directories under the Nop.Web project folder require write permissions for nopCommerce to run:
+
+\App_Data\
+\bin\
+\Content\
+\Content\Images\
+\Content\Images\Thumbs\
+\Content\Images\Uploaded\
+\Content\files\ExportImport\
+\Plugins\
+\Plugins\bin\
+\Global.asax
+\web.config
+
+3. The nopCommerce source code comes with a number of already developed plugins which you can find in the Plugins directory under the solution root directory.
+
+Most of these plugins can be used as a template for your HomePageNewProductsPlugin. More information on how to create a plugin you can find here:
+
+http://docs.nopcommerce.com/display/nc/Creating+a+nopCommerce+plugin
+
+
+Once you have everything setup and have familiarized yourself a bit with the nopCommerce source code and most specifically the code of the plugins,
+you can start developing the HomePageNewProductsPlugin.
+
+Here are the specific requirements of the HomePageNewProductsPlugin that you need to cover:
+
+The HomePageNewProductsPlugin needs to have two settings, which the store owner can set from the administration page of the plugin.
+
+1. Widget Zone
+The store owner should be able to choose one of the available home page widget zones from a dropdown in the administration page of the HomePageNewProductsPlugin.
+Widget zones are placeholders in the store public pages (like the home page for example) where a plugin could add dynamic markup.
+
+This means that your plugin needs to be a widget plugin.
+
+You can read more about Widgets here:
+
+http://docs.nopcommerce.com/display/nc/Widgets
+
+Please note that there are two widget plugins which come with the nopCommerce source code.
+
+Since we want the recently added products to be shown only on the Home page then you need to take into consideration the available widget zones on the home page itself.
+You can find the markup of the home page in the Views/Home/Index.cshtml view inside the Nop.Web project.
+In the markup this code for example:
+
+@Html.Widget("home_page_top")
+
+means that this is the "home_page_top" widget zone. All plugins who have registered to output markup for this specific widget zone will be called here.
+
+2. Number of products
+
+There should be a setting to specify the number of recently added products to be shown on the home page. For example if the store owners specifies 4 for this setting
+only the 4 most recently added products will be shown.
+
+
+Once you have completed the plugin please upload your plugin project to GitHub and send a link to milen@nop-templates.com.
+
+If you have any questions please feel free to ask us anything by email or on Skype.
+
+Email: milen@nop-templates.com
+Skype: m_kovatchev
