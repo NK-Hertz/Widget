@@ -163,17 +163,9 @@ namespace Nop.Plugin.Widgets.HomePageNewProducts.Controllers
                 return Content("");
             }
 
-            var products = this.GetNewestProducts();
+            var products = this.GetNewestProducts(_homePageNewProductsSettings.NumberOfProducts);
 
-            if (products.Count > _homePageNewProductsSettings.NumberOfProducts)
-            {
-                for (int i = products.Count - 1; i >= _homePageNewProductsSettings.NumberOfProducts; i--)
-                {
-                    products.RemoveAt(i);
-                }
-            }
-
-            var preparedProductOverviewModels = ControllerExtensions.PrepareProductOverviewModels(this, _workContext,
+            var preparedProductOverviewModels = this.PrepareProductOverviewModels(_workContext,
                 _storeContext, _categoryService, _productService, _specificationAttributeService,
                 _priceCalculationService, _priceFormatter, _permissionService,
                 _localizationService, _taxService, _currencyService,
@@ -186,16 +178,15 @@ namespace Nop.Plugin.Widgets.HomePageNewProducts.Controllers
             return View("~/Plugins/Widgets.HomePageNewProducts/Views/WidgetsHomePageNewProducts/PublicInfo.cshtml", model);
         }
 
-        private IList<Product> GetNewestProducts()
+        private IList<Product> GetNewestProducts(int numberOfProducts)
         {
             var query = from p in _productRepository.Table
-                            orderby p.CreatedOnUtc descending
-                            where p.Published &&
-                            !p.Deleted &&
-                            p.VisibleIndividually == true &&
-                            p.MarkAsNew == true
-                            select p;
-            var products = query.ToList();
+                        orderby p.Id descending 
+                        where p.Published &&
+                        !p.Deleted &&
+                        p.VisibleIndividually == true
+                        select p;
+            var products = query.Take(numberOfProducts).ToList();
             return products;
         }
     }
